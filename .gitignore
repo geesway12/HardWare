@@ -1,0 +1,22 @@
+# add common clutter
+cat <<'EOF' >> .gitignore
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux file managers
+*~     # gedit / etc.
+
+# Logs
+*.log
+
+# Build artefacts
+*.zip
+*.tar.gz
+EOF
