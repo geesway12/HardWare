@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HardWare | Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"><!-- icons optional -->
+  <link rel="manifest" href="manifest.json">
+  <link href="style.css" rel="stylesheet">
+  <meta name="theme-color" content="#212529">
+</head>
+
+<!-- flex‑column so footer (if added later) can stick to bottom -->
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- The span will be replaced by JS with logo + name -->
+      <a id="brandLink" href="index.html" class="navbar-brand"></a>
+
+      <div class="d-flex">
+        <a href="settings.html" class="btn btn-outline-light btn-sm">Settings</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <div class="container my-4 flex-grow-1">
+    <h4 class="text-center">Dashboard</h4>
+
+    <div class="row text-center">
+      <div class="col-6 p-2">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>Today’s Sales</h5>
+            <h3 id="salesTotal">₵0.00</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 p-2">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>Stock Items</h5>
+            <h3 id="stockTotal">0</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 d-grid gap-2">
+      <a href="sales.html" class="btn btn-primary">New Sale</a>
+      <a href="products.html" class="btn btn-secondary">Manage Products</a>
+      <a href="inventory.html" class="btn btn-info text-white">View Inventory</a>
+    </div>
+  </div>
+
+  <!-- (Optional footer could go here) -->
+
+  <!-- Common scripts -->
+  <script src="utils.js"></script>
+  <script src="index.js"></script>
+  <script src="settings.js"></script><!-- gives access to shopSettings -->
+
+  <!-- Inject logo + name -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const brand = document.getElementById('brandLink');
+      const s = JSON.parse(localStorage.getItem('shopSettings') || '{}');
+
+      if (s.logo) {
+        brand.innerHTML = `
+          <img src="${s.logo}" alt="${s.name || 'HardWare'} logo" height="32" class="me-2">
+          ${s.name || 'HardWare'}
+        `;
+      } else {
+        brand.textContent = s.name || 'HardWare';
+      }
+    });
+
+    /* service‑worker */
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(() => console.log('Service Worker registered'))
+        .catch(err => console.error('Service Worker registration failed:', err));
+    }
+  </script>
+</body>
+</html>

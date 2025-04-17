@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HardWare | Sales</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">HardWare</a>
+      <div class="d-flex">
+        <a href="products.html" class="btn btn-outline-light btn-sm">Products</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-4">
+    <h4 class="text-center mb-3">New Sale</h4>
+
+    <!-- Add‑to‑cart form -->
+    <form id="saleForm" class="row g-3">
+      <div class="col-md-6 col-lg-5">
+        <select id="saleProduct" class="form-select" required>
+          <option value="" disabled selected>Select Product</option>
+        </select>
+      </div>
+
+      <div class="col-md-3 col-lg-3">
+        <input type="number" id="saleQty" class="form-control" placeholder="Quantity" required>
+      </div>
+
+      <div class="col-md-3 col-lg-2 d-grid">
+        <button type="button" class="btn btn-secondary" onclick="addToCart()">Add</button>
+      </div>
+    </form>
+
+    <!-- Cart -->
+    <div class="mt-4">
+      <h6>Sale Cart</h6>
+      <table class="table table-bordered table-sm" id="cartTable">
+        <thead class="table-light">
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <!-- Confirm sale button -->
+      <div class="text-end">
+        <button id="confirmSaleBtn" class="btn btn-success" disabled>Confirm Sale</button>
+      </div>
+    </div>
+
+    <div class="text-end mt-3">
+      <button class="btn btn-outline-primary btn-sm" onclick="printProformaInvoice()">Print Proforma Invoice</button>
+      <button class="btn btn-outline-secondary btn-sm" onclick="printReceipt()">Print Receipt</button>
+      <div class="text-end mt-3">
+        <button class="btn btn-outline-success btn-sm" onclick="exportSalesToExcel()">Export to Excel</button>
+      </div>
+      
+    </div>
+
+    <hr>
+
+    <!-- Today’s sales -->
+    <h5>Today’s Sales</h5>
+    <table class="table table-bordered table-sm" id="salesTable">
+      <thead class="table-light">
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Total (₵)</th>
+          <th>Date / Time</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="sales.js"></script>
+  <script src="utils.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker registered'))
+        .catch(err => console.error('Service Worker registration failed:', err));
+    }
+  </script>
+</body>
+</html>

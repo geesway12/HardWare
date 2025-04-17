@@ -1,0 +1,44 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .container {
+    max-width: 900px;
+  }
+  
+  form .form-control, form .form-select {
+    border-radius: 0.4rem;
+  }
+  
+  h4, h5 {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  table th {
+    background-color: #343a40;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .table td, .table th {
+    vertical-align: middle;
+  }
+  
+  button {
+    border-radius: 0.3rem !important;
+  }
+  
+  .d-grid .btn {
+    padding: 0.6rem;
+  }
+  
